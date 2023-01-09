@@ -5,6 +5,10 @@ This software is designed to read the top posts from r/worldnews. It scans the p
 # License
  **This code is free to copy, use, monetize, or redistribute, without the consent of the author. However, the author offers no warranty or support for this software outside of any fixes or modifications made by the author, at their discretion. By using this software, you agree that the author bares no responsibility for any issues or damages received by using this software.**
 
+## Visualization of the results, through Tableau Public
+
+[Top post Dashboard]
+(https://public.tableau.com/views/rworldnewstoppostflairs/worldnews?:language=en-US&:display_count=n&:origin=viz_share_link)
 ## DISCLAIMER: 
 
 You MUST supply your own API keys and credentials. 
