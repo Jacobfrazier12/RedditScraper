@@ -17,6 +17,7 @@ You MUST supply your own API keys and credentials.
 ## How to run
 
 - Run `pip3 install -r "requirements.txt"` to install the required external packages. 
+Run `python3 -m spacy download en_core_web_sm` to install the needed model.
 
 - On line 9, you will find multiple variables, which are client_id, client_secret, and user_agent. Set each one's value to your appropriate credentials. If running on a production server, I highly recommend storing them as environment variables, encrypting them, and accessing them via os.environ. This software does not include encryption or decryption for that purpose. You will need to do that yourself. 
 

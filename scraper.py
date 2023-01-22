@@ -1,6 +1,7 @@
 import praw as pr
 import pandas as pd
 import spacy
+from os import getcwd
 from os import environ, path
 from time import time
 from datetime import date
@@ -8,12 +9,12 @@ from datetime import datetime
 from difflib import SequenceMatcher
 client_id, client_secret, user_agent = environ.get("REDDIT_CLIENT_ID"), environ.get("REDDIT_SECRET"), "AnalyticalScraper"
 #Specifies the path for where to dump received data from Reddit 
-file_path_for_dumping_posts = "./RedditData.csv"
+file_path_for_dumping_posts = path.join(getcwd(),"RedditData.csv")
 #Specifies the path for where to dump top flairs and the number of posts that contain them.
-top_flairs_dump_path = "./TopPosts.csv"
+file_path_for_dumping_top_flairs = path.join(getcwd(),"TopPosts.csv")
 #Generates a similarity score for two strings.
-def similar(a,  b):
-   return SequenceMatcher(None, a.lower(), b.lower()).ratio()
+def similar(str1: str,  str2: str):
+   return SequenceMatcher(None, str1.lower(), str2.lower()).ratio()
 
 def cleanup_similar_flairs(posts_df: pd.DataFrame):
    #Gathers the number of occurrences for each post unique post flair, adds these values to a dictionary, and coverts it to a Dataframe. 
@@ -107,20 +108,20 @@ if not path.exists(path = file_path_for_dumping_posts) or is_file_older_than_x_d
    top_posts_df = cleanup_similar_flairs(top_posts_df) #Calls the cleanup_similar_flairs function to merge together similar titles.
    top_posts_df.drop_duplicates(keep = "first") #Drops duplicate rows while keeping the first encountered.
    top_posts_df.to_csv(path_or_buf = file_path_for_dumping_posts, mode = "a", index = False) #Appends the data to the CSV file. DOES NOT overwrite.
-   print(f"Dumped results to {file_path_for_dumping_posts[2:]}")
+   print(f"Dumped results to {file_path_for_dumping_posts}")
    print("Calculating top flairs!")
    #This section rereads the cleaned CSV file and groups the data by the year created and passes it to the get_top_posts_flairs_and_counts_per_year function.
    reddit_data_group = pd.read_csv(file_path_for_dumping_posts).groupby("Year Created")
    top_flairs_by_year_df = get_top_posts_flairs_and_counts_per_year(top_posts_group = reddit_data_group)
-   top_flairs_by_year_df.to_csv(path_or_buf = top_flairs_dump_path, mode = "w", index = False) #Dumps the flair and counts to specified CSV file.
-   print(f"Done! Dumped results to {top_flairs_dump_path[2:]}")
+   top_flairs_by_year_df.to_csv(path_or_buf = file_path_for_dumping_top_flairs, mode = "w", index = False) #Dumps the flair and counts to specified CSV file.
+   print(f"Done! Dumped results to {file_path_for_dumping_top_flairs}")
 
    
    
    
 else:
    
-   top_flairs_by_year_df = pd.read_csv(filepath_or_buffer = top_flairs_dump_path) #Reads the CSV file containing the flair counts. 
+   top_flairs_by_year_df = pd.read_csv(filepath_or_buffer = file_path_for_dumping_top_flairs) #Reads the CSV file containing the flair counts. 
    print(top_flairs_by_year_df)
    
    
