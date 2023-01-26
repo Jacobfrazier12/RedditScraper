@@ -26,3 +26,7 @@ Run `python3 -m spacy download en_core_web_sm` to install the needed model.
 - On line 13, you will find a variable called "top_flairs_dump_path." Set this string to the path for where you want to store the flairs and their number of occurrences.
 
 - Finally, run `python3 scraper.py`, in your terminal. 
+
+# Automate the initialization process and running the script
+**If you have GNNU Make installed on your system, run `make init` to install the dependencies and `make run` to run the scraper.
+
