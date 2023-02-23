@@ -3,7 +3,7 @@
 This software is designed to read the top posts from r/worldnews. It scans the post flairs to see which ones appear most often. If a post does not have one, this software uses Natural Language Processing to find potential flairs. If none are found, the row is discarded. BE AWARE that this software only works with worldnews. Using any other subreddit may or will result in software failure.  
 
 # License
- **This code is free to copy, use, monetize, or redistribute, without the consent of the author. However, the author offers no warranty or support for this software outside of any fixes or modifications made by the author, at their discretion. By using this software, you agree that the author bares no responsibility for any issues or damages received by using this software.**
+ **This software is free to copy, use, monetize, or redistribute, whether the reproduction of this software is open-source or not, without the consent of the author. However, the author offers no warranty or support for this software outside of any fixes or modifications made by the author, at their discretion. By using this software, you agree that the author bares no responsibility for any issues or damages received by using this software.**
 
 ## Visualization of the results, through Tableau Public
 
@@ -28,5 +28,5 @@ Run `python3 -m spacy download en_core_web_sm` to install the needed model.
 - Finally, run `python3 scraper.py`, in your terminal. 
 
 # Automate the initialization process and running the script
-**If you have GNNU Make installed on your system, run `make init` to install the dependencies and `make run` to run the scraper.
+**If you have GNU Make installed on your system, run `make init` to install the dependencies and `make run` to run the scraper.**
 
